@@ -6,7 +6,8 @@
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <%= image_tag product.image,class: "card-img-top" if product.image.attached? %>
+                            <%= image_tag product.image, class: "img-fluid ratio ratio-1x1", style: "height: 200px; width: auto; object-fit:cover; " if product.image.attached? %>
+
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
