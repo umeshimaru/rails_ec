@@ -5,6 +5,7 @@ class ProductController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @suggested_products = Product.related_products
   end
 
 
