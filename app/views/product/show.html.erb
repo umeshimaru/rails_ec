@@ -27,8 +27,8 @@
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
       <% @suggested_products.each do |suggested_product|%>
         <div class="col mb-5">
-          <div class="card h-100" style="height: 200px;">
-            <%= image_tag suggested_product.image, class: "card-img-top img-thumbnail",style: "height: 100%; width: 100%; object-fit:cover;" if suggested_product.image.attached? %>
+          <div class="card h-100" >
+            <%= image_tag suggested_product.image, class: "img-fluid",style: "height: 200px; width: 100%; object-fit:cover;" if suggested_product.image.attached? %>
             <!-- Product details-->
             <div class="card-body p-4">
               <div class="text-center">
