@@ -36,6 +36,8 @@ gem 'mini_magick'
 
 gem "aws-sdk-s3", require: false
 
+gem 'faker'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -62,7 +64,6 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'rspec-rails'
-  gem 'faker'
   gem 'hirb'
 
 end
