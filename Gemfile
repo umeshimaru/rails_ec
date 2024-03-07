@@ -34,7 +34,7 @@ gem 'jbuilder'
 
 gem 'mini_magick'
 
-gem "aws-sdk-s3"
+gem "aws-sdk-s3", require: false
 
 gem 'faker'
 
