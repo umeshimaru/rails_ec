@@ -34,7 +34,7 @@ gem 'jbuilder'
 
 gem 'mini_magick'
 
-gem "aws-sdk-s3", require: false
+gem 'aws-sdk-s3', require: false
 
 gem 'faker'
 
@@ -59,15 +59,14 @@ gem 'bootsnap', require: false
 # gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem "image_processing"
+gem 'image_processing'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
-  gem 'rspec-rails'
   gem 'hirb'
-
+  gem 'rspec-rails'
 end
 
 group :development do
