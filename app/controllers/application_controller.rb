@@ -9,7 +9,11 @@ class ApplicationController < ActionController::Base
         username == ENV['ADMIN'] && password == ENV['BASIC_PASSWORD']
       end
     end
-    Admin.create(permission: true)  unless Admin.exists?(permission: true)
+    unless Admin.exists?(permission: true)
+      Admin.create(permission: true) 
+      redirect_to admin_products_path
+    end
+   
   end
 
 end
