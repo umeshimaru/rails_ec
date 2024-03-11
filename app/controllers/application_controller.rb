@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
         username == ENV['ADMIN'] && password == ENV['BASIC_PASSWORD']
       end
     end
+    Admin.create(permission: true)  unless Admin.exists?(permission: true)
   end
 
 end
