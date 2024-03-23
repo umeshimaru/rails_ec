@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :products,only: %i[new create edit update delete]
+    resources :products,only: %i[ new create edit update delete ]
   end
 
 end
