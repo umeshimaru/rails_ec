@@ -15,7 +15,7 @@
       <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
         <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">カートに追加</a></div>
       </div>
-      <% if Admins.exists? %>
+      <% if Admin.exists? %>
       <div class="container">
         <div><%= button_to "編集",{ },{ class: "btn btn-success" }%></div>
         <div><%= button_to "削除",{ },{ class: "btn btn-danger" }%></div>
