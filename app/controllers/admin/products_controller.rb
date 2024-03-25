@@ -7,12 +7,11 @@ class Admin::ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params[:id])
   end
 
   def update
    if @product.update(product_params)
-    redirect_to  admin_products_path
+    redirect_to  admin_products_path,flash:{success: "更新完了"}
    else
     render :edit, status: :unprocessable_entity
    end 
