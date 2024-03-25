@@ -3,7 +3,7 @@
     <%= f.label :images, "商品画像", class: "col-sm-2 col-form-label text-end " %>
     <div class="col-sm-7 " style="width:400px; " >
       <%= image_tag @product.image,class: "img-thumbnail  img-fluid max-width: 100%;height: auto;  "%>
-      <%= f.file_field :images, class: "form-control " %>
+      <%= f.file_field :image, class: "form-control " %>
     </div>
   </div>
   <div class="mb-3 row align-items-center ">

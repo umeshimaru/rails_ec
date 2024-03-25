@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
-  has_one_attached :image
+  has_one_attached :image, service: :amazon
 
   scope :related_products, -> { order(created_at: :desc).limit(5) }
 
