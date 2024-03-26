@@ -1,5 +1,5 @@
 class Admin::ProductsController < ApplicationController
-    before_action :edit_product, only: [:edit, :update]
+    before_action :find_product, only: %i[edit update destroy]
   def new
   end
 
@@ -17,7 +17,9 @@ class Admin::ProductsController < ApplicationController
    end 
   end
 
-  def delete
+  def destroy
+    @product.destroy
+    redirect_to  admin_products_path,flash:{danger: "削除完了"}
   end
 
   private
@@ -26,7 +28,7 @@ class Admin::ProductsController < ApplicationController
       params.require(:product).permit(:name, :price,:product_code,:description,:image)
     end
 
-    def edit_product
+    def find_product
       @product = Product.find(params[:id])
     end
 end

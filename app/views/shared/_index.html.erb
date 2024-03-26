@@ -17,8 +17,8 @@
       </div>
       <% if Admin.exists? %>
       <div class="container">
-        <div><%= button_to "編集",edit_admin_product_path(product.id) , { class: "btn btn-success", method: :get,}%></div>
-        <div><%= button_to "削除",{ },{ class: "btn btn-danger" }%></div>
+        <div><%= button_to "編集",edit_admin_product_path(product) , { class: "btn btn-success", method: :get}%></div>
+        <div><%= button_to "削除",admin_product_path(product),{ class: "btn btn-danger", method: :delete }%></div>
       </div>
       <% end %>
     </div>
