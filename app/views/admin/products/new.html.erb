@@ -1,2 +1,38 @@
-<h1>Admin::Products#new</h1>
-<p>Find me in app/views/admin/products/new.html.erb</p>
+<%= form_with model: [:admin, @product] do |f| %>
+  <div class="mb-3 row align-items-center">
+    <%= f.label :images, "商品画像", class: "col-sm-2 col-form-label text-end " %>
+    <div class="col-sm-7 " style="width:400px; " >
+      <%= f.file_field :image, class: "form-control " %>
+    </div>
+  </div>
+  <div class="mb-3 row align-items-center ">
+    <%= f.label :name, "商品名", class: "col-sm-2 col-form-label text-end  " %>
+    <div class="col-sm-7">
+      <%= f.text_field :name , class: "form-control" %>
+    </div>
+  </div>
+  <div class="mb-3 row align-items-center ">
+    <%= f.label :price, "価格", class: "col-sm-2 col-form-label text-end  " %>
+    <div class="col-sm-7">
+      <%= f.number_field :price, class: "form-control" %>
+    </div>
+  </div>
+  <div class="mb-3 row align-items-center ">
+    <%= f.label :product_code,"商品番号", class: "col-sm-2 col-form-label text-end  " %>
+    <div class="col-sm-7">
+      <%= f.text_field :product_code, class: "form-control" %>
+    </div>
+  </div>
+  <div class="mb-3 row align-items-center ">
+    <%= f.label :description,"商品説明", class: "col-sm-2 col-form-label text-end   " %>
+    <div class="col-sm-7">
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+  </div>
+  <div class="mb-3 row align-items-center">
+  <div class="col-sm-2 "></div>
+    <div class="col-sm-7">
+      <%= f.submit "登録", class: "btn btn-primary form-control" %>
+    </div>
+  </div>
+<% end   %>

@@ -1,9 +1,17 @@
 class Admin::ProductsController < ApplicationController
     before_action :find_product, only: %i[edit update destroy]
+
   def new
+    @product = Product.new
   end
 
   def create
+    @product = Product.new(product_params)
+    if @product.save
+        redirect_to admin_products_path,flash:{primary: "登録完了"}
+      else
+        render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -31,4 +39,5 @@ class Admin::ProductsController < ApplicationController
     def find_product
       @product = Product.find(params[:id])
     end
+
 end
