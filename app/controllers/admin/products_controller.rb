@@ -8,7 +8,7 @@ class Admin::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-        redirect_to admin_products_path,flash :{primary: "登録完了"}
+        redirect_to admin_products_path,flash:{primary: "登録完了"}
       else
         render :new, status: :unprocessable_entity
     end
