@@ -15,12 +15,12 @@
       <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
         <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">カートに追加</a></div>
       </div>
-      <% if admin? %>
-      <div class="container">
-        <div><%= button_to "編集",edit_admin_product_path(product) , { class: "btn btn-success", method: :get}%></div>
-        <div><%= button_to "削除",admin_product_path(product),{ class: "btn btn-danger", method: :delete }%></div>
-      </div>
-      <% end %>
+  <% if admin? %>
+  <div class="container" style="display:flex;justify-content: center;">
+  <%= link_to "編集", edit_admin_product_path(product), class: "btn btn-success" %>
+  <%= link_to "削除", admin_product_path(product), method: :delete, data: { confirm: "削除してもよろしいですか？" }, class: "btn btn-danger" ,style: "margin-left:5px;" %>
+  </div>
+<% end %>
     </div>
   </div>
 <% end %>
