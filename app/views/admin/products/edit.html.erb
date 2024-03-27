@@ -30,10 +30,11 @@
       <%= f.text_area :description, class: "form-control" %>
     </div>
   </div>
-  <div class="mb-3 row align-items-center">
-  <div class="col-sm-2 "></div>
-    <div class="col-sm-7">
-      <%= f.submit "更新", class: "btn btn-success form-control" %>
+ <div class="mb-3 row ">
+   <div class="col-sm-2 "></div>
+    <div class="col-sm-7" style="display:flex; justify-content: center;">
+      <%= link_to "戻る", admin_products_path, class: "btn btn-secondary ",style: "width:50%;"%>
+      <%= f.submit "更新", class: "btn btn-success",style: "margin-left:5px;width:50%;" %>
     </div>
   </div>
 <% end   %>
