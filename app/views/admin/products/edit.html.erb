@@ -6,6 +6,7 @@
       <%= f.file_field :image, class: "form-control " %>
     </div>
   </div>
+  <%= render 'shared/error_messages',product:@product %>
   <div class="mb-3 row align-items-center ">
     <%= f.label :name, "商品名", class: "col-sm-2 col-form-label text-end  " %>
     <div class="col-sm-7">

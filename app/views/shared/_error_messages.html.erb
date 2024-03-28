@@ -1,0 +1,10 @@
+  <% if product.errors.any? %>
+    <div class="mb-3 row align-items-center " >
+      <div class="col-sm-2"></div>
+      <ul style="border:solid red;"class="col-sm-7"style="flex-wrap:nowrap">
+        <% product.errors.full_messages.each do |message| %>
+          <li style="color:red;margin-left:10px;"><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
