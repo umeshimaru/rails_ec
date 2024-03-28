@@ -7,7 +7,8 @@ class Product < ApplicationRecord
 
   validates :name,         presence: true, uniqueness: true, length: { maximum: 255 }
   validates :price,        presence: true, numericality: { only_integer: true }
-  validates :product_code, presence: true, uniqueness: true,length: { maximum: 255 },format: { with: /\A[0-9]+\z/ }
+  validates :product_code, presence: true, uniqueness: true,length: { maximum: 255 },format: { with:/\A(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]+\z/
+  }
   validates :description,  presence: true
 
 
