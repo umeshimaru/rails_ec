@@ -1,3 +1,4 @@
+<%= render 'shared/error_messages',product:@product %>
 <%= form_with model: [:admin, @product] do |f| %>
   <div class="mb-3 row align-items-center">
     <%= f.label :images, "商品画像", class: "col-sm-2 col-form-label text-end " %>
