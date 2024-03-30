@@ -29,12 +29,16 @@
       <% @suggested_products.each do |suggested_product|%>
         <div class="col mb-5">
           <div class="card h-100">
-            <%= image_tag suggested_product.image, class: "img-fluid relate-images",style: " width: 100%;height: 200px;object-fit: cover; " if suggested_product.image.attached? %>
+           <%= link_to  product_path(suggested_product.id) do %>
+        <div>
+          <%= image_tag suggested_product.image,  style:"height: 200px; width: 100%;object-fit: cover;  " if suggested_product.image.attached? %>
+        </div>
+      <%end%>
             <!-- Product details-->
             <div class="card-body p-4">
               <div class="text-center">
                 <!-- Product name-->
-                <h5 class="fw-bolder"><%=suggested_product.name%></h5>
+                <h5 class="fw-bolder"><%= link_to suggested_product.name,product_path(suggested_product.id)%></h5>
                 <!-- Product price-->
                 <%= "#{suggested_product.price}円"%>
               </div>

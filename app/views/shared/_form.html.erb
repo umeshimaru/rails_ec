@@ -1,0 +1,45 @@
+<%= render 'shared/error_messages',product:@product %>
+<%= form_with model: [:admin, @product] do |f| %>
+  <div class="mb-3 row align-items-center" >
+    <%= f.label :images, "商品画像", class: "col-sm-2 col-form-label text-end " %>
+
+    <div class="col-sm-7 " style="width:400px;">
+    <%unless product.image.blank?%>
+      <%= image_tag product.image,class: "img-thumbnail  img-fluid max-width: 100%;height: auto;  "%>
+    <%end%>
+      <%= f.file_field :image, class: "form-control " %>
+    </div>
+    
+  </div>
+  <div class="mb-3 row align-items-center ">
+    <%= f.label :name, "商品名", class: "col-sm-2 col-form-label text-end  " %>
+    <div class="col-sm-7">
+      <%= f.text_field :name , class: "form-control" %>
+    </div>
+  </div>
+  <div class="mb-3 row align-items-center ">
+    <%= f.label :price, "価格", class: "col-sm-2 col-form-label text-end  " %>
+    <div class="col-sm-7">
+      <%= f.number_field :price, class: "form-control" %>
+    </div>
+  </div>
+  <div class="mb-3 row align-items-center ">
+    <%= f.label :product_code,"商品番号", class: "col-sm-2 col-form-label text-end  " %>
+    <div class="col-sm-7">
+      <%= f.text_field :product_code, class: "form-control" %>
+    </div>
+  </div>
+  <div class="mb-3 row align-items-center ">
+    <%= f.label :description,"商品説明", class: "col-sm-2 col-form-label text-end   " %>
+    <div class="col-sm-7">
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+  </div>
+ <div class="mb-3 row ">
+   <div class="col-sm-2 "></div>
+    <div class="col-sm-7" style="display:flex; justify-content: center;">
+      <%= link_to "戻る", admin_products_path, class: "btn btn-secondary ",style: "width:50%;"%>
+      <%= f.submit button_name, class: "btn btn-#{key}",style: "margin-left:5px;width:50%;" %>
+    </div>
+  </div>
+<% end   %>
