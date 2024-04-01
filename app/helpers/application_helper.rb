@@ -6,7 +6,6 @@ module ApplicationHelper
   end
 
   def admin_products_path_or_products_path?
-     admin? ?  admin_products_path : products_path
+    admin? ? admin_products_path : products_path
   end
-
 end
