@@ -3,14 +3,13 @@
 module Admin
   class ProductsController < ApplicationController
     before_action :basic_auth
-    before_action :find_product, only: %i[edit update destroy]
+    before_action :set_product, only: %i[edit update destroy show]
 
     def index
-      @products = Product.all
+      @products = Product.all.with_attached_image
     end
 
     def show
-      @product = Product.find(params[:id])
       @suggested_products = Product.related_products
     end
 
@@ -48,7 +47,7 @@ module Admin
       params.require(:product).permit(:name, :price, :product_code, :description, :image)
     end
 
-    def find_product
+    def set_product
       @product = Product.find(params[:id])
     end
 
