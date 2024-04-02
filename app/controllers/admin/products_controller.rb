@@ -53,11 +53,11 @@ module Admin
     end
 
     def basic_auth
-      return unless Rails.env.development?
-
+      if Rails.env.development?
       authenticate_or_request_with_http_basic do |username, password|
         username == ENV['ADMIN'] && password == ENV['BASIC_PASSWORD']
       end
     end
   end
+end
 end
