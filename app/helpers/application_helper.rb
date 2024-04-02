@@ -5,6 +5,10 @@ module ApplicationHelper
     raise 'Happiness chainではhidden_field_tagの使用を禁止しています'
   end
 
+  def admin?
+    true if Rails.env.development?
+  end
+  
   def admin_products_path_or_products_path?
     admin? ? admin_products_path : products_path
   end
