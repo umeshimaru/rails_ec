@@ -49,6 +49,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_28_103448) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_products_on_name", unique: true
+    t.index ["product_code"], name: "index_products_on_product_code", unique: true
   end
 
   create_table "tasks", force: :cascade do |t|

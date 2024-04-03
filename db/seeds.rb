@@ -23,7 +23,7 @@ product_descriptions = [
   '口紅は、美しい色合いで唇を彩る化粧品で、魅力的な口元を演出します。'
 ]
 9.times do |number|
-  product = Product.create(
+  product = Product.create!(
     name: product_names[number],
     price: Faker::Number.number(digits: 3),
     product_code: Faker::Code.nric,

@@ -14,7 +14,12 @@ module Myapp
 
     config.active_storage.variant_processor = :mini_magick
 
+    config.i18n.default_locale = :ja
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
+
     config.load_defaults 7.0
+    config.action_view.field_error_proc = proc { |html_tag, _instance| html_tag }
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

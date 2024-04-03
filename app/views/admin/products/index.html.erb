@@ -1,23 +1,30 @@
+<div><%= button_to "商品作成",new_admin_product_path,{class: "btn btn-primary",method: :get} if admin?%></div>
 <section class="py-5">
   <div class="container px-4 px-lg-5 mt-5">
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
       <% @products.each do |product| %>
         <div class="col mb-5" >
           <div class="card h-100 ">
-            <%= link_to product_path(product.id)  do %>
+            <%= link_to admin_product_path(product.id)  do %>
               <div style="height:230px;">
                 <%= image_tag product.image,class:"w-100 h-100", style:" aspect-ratio: 2 / 1;"   if product.image.attached? %>
               </div>
             <%end%>
             <div class="card-body p-4">
               <div class="text-center">
-                <h5 class="fw-bolder"><%= link_to product.name,product_path(product.id) %></h5>
+                <h5 class="fw-bolder"><%= link_to product.name,admin_product_path(product.id) %></h5>
                 <%= "#{product.price}円" %>
               </div>
             </div>
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
               <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
             </div>
+            <% if admin? %>
+              <div class="container" style="display:flex;justify-content: center;margin-bottom:5px;">
+                <%= link_to "編集", edit_admin_product_path(product), class: "btn btn-success" %>
+                <%= button_to "削除", admin_product_path(product), method: :delete,  class: "btn btn-danger" ,style: "margin-left:5px;" %>
+              </div>
+            <% end %>
           </div>
         </div>
       <% end %>

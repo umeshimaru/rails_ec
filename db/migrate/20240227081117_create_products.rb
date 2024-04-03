@@ -9,5 +9,7 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.text :description
       t.timestamps
     end
+    add_index :products, :name, unique: true
+    add_index :products, :product_code, unique: true
   end
 end
