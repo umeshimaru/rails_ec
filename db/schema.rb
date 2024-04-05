@@ -53,7 +53,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_113655) do
   end
 
   create_table "customers", force: :cascade do |t|
-    t.string "remember_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
