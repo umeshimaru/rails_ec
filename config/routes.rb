@@ -2,7 +2,8 @@
 
 Rails.application.routes.draw do
   resources :cart_products, only: [:index, :new, :destroy]
-  get 'customers/new'
+  post 'customers/create'
+  get  'customers/new'
   root 'products#index'
   resources :products, only: %i[index show]
   namespace :admin do
