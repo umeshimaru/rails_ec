@@ -8,11 +8,9 @@ class CustomersController < ApplicationController
     if customer.nil?
       customer = Customer.create
       cookies.permanent.signed[:customer_id] = customer.id
+      customer.cart_products.create(cart_product_params)
     else
-      cart_product = customer.cart_products.new(cart_product_params)
-      if cart_product.save
-        redirect_to customers_new_path
-      end
+      customer.cart_products.create(cart_product_params)
     end
   end
 
