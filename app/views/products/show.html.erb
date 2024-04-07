@@ -11,10 +11,10 @@
         <p class="lead"><%= @product.description%></p>
         <div class="d-flex">
           <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-          <button class="btn btn-outline-dark flex-shrink-0" type="button">
-            <i class="bi-cart-fill me-1"></i>
-            Add to cart
-          </button>
+            
+         <%= button_to({controller: 'customers', action: 'create'}, {method: :post, params:{ cart_products:{quantity:1,product_id:@product.id}}, class: "btn btn-outline-dark mt-auto" }) do %>
+  <i class="bi-cart-fill me-1"></i>Add to cart
+<% end %>
           <%= link_to "戻る",products_path, class: "btn btn-outline-dark flex-shrink-0" ,style: "width:30%;margin-left:5px;"%>
         </div>
       </div>
@@ -46,7 +46,7 @@
             <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
               <div class="text-center">
-              <%= button_to "Add to cart", {controller: 'customers', action: 'new'},method: :post, class: "btn btn-outline-dark mt-auto" %></div>
+               <%= button_to "Add to cart", {controller: 'customers', action: 'create'},{method: :post, params:{ cart_products:{quantity:1,product_id:suggested_product.id}}, class: "btn btn-outline-dark mt-auto" }%></div>
             </div>
           </div>
         </div>
