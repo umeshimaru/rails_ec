@@ -17,7 +17,7 @@
             </div>
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
               <div class="text-center">
-              <%= button_to "Add to cart", {controller: 'customers', action: 'create'},{method: :post, params: {quantity:1,product_id:product.id}, class: "btn btn-outline-dark mt-auto" }%></div>
+              <%= button_to "Add to cart", {controller: 'customers', action: 'create'},{method: :post, params:{ cart_products:{quantity:1,product_id:product.id}}, class: "btn btn-outline-dark mt-auto" }%></div>
             </div>
           </div>
         </div>

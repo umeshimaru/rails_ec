@@ -19,7 +19,7 @@ class CustomersController < ApplicationController
 private
 
 def cart_product_params
-  permit_params = params.require(:cart_product).permit(:product_id,:quantity)
+  permit_params = params.require(:cart_products).permit(:product_id,:quantity)
   permit_params.merge(customer_id: cookies.signed[:customer_id])
 end 
 
