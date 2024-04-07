@@ -9,8 +9,10 @@ class CustomersController < ApplicationController
       customer = Customer.create
       cookies.permanent.signed[:customer_id] = customer.id
       customer.cart_products.create(cart_product_params)
+      redirect_to products_path, flash: { primary: "カートに追加しました" }
     else
       customer.cart_products.create(cart_product_params)
+      redirect_to products_path, flash: { primary: "カートに追加しました" }
     end
   end
 
