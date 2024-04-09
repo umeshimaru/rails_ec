@@ -1,6 +1,8 @@
 class CartProductsController < ApplicationController
   before_action :new_cutomer? ,only:[:create]
   def index
+    @customer = Customer.find_by(id: cookies.signed[:customer_id])
+    @customer.products
   end
 
   def new
