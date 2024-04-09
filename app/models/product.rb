@@ -12,5 +12,5 @@ class Product < ApplicationRecord
   validates :product_code, presence: true, uniqueness: true, length: { maximum: 255 },
                            format: { with: /\A[a-zA-Z0-9]+[a-zA-Z0-9]+[a-zA-Z0-9]+\z/ }
   validates :description, presence: true
-  validates :image, presence: true, blob: { content_type: :image }
+  # validates :image, presence: true, blob: { content_type: :image }
 end

@@ -10,9 +10,12 @@
         </div>
         <p class="lead"><%= @product.description%></p>
         <div class="d-flex">
-          <input class="form-control text-center me-3" id="inputQuantity" type="number" value="1" style="max-width: 4rem" min="1" max="100"/>
-         <%= button_to({controller: 'customers', action: 'create'}, {method: :post, params:{ cart_products:{quantity:1,product_id:@product.id}}, class: "btn btn-outline-dark mt-auto" }) do %>
-  <i class="bi-cart-fill me-1"></i>Add to cart
+ <%= form_with model: CartProduct.new  do |f| %>
+  <%= f.number_field :quantity, class: "form-control text-center me-3", style: "max-width: 4rem", min: 1, max: 100, value: 1%>
+  <input type="hidden" name="cart_product[product_id]" value="<%= @product.id %>">
+  <button type="submit" class="btn btn-outline-dark mt-auto">
+    <i class="bi bi-cart-fill me-1"></i>Add to cart
+  </button>
 <% end %>
           <%= link_to "戻る",products_path, class: "btn btn-outline-dark flex-shrink-0" ,style: "width:30%;margin-left:5px;"%>
         </div>

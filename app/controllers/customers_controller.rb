@@ -23,7 +23,4 @@ def cart_product_params
   permit_params.merge(customer_id: cookies.signed[:customer_id])
 end 
 
-
-
-
 end
