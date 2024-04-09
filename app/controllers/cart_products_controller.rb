@@ -1,4 +1,5 @@
 class CartProductsController < ApplicationController
+  before_action :new_cutomer? ,only:[:create]
   def index
   end
 
@@ -6,16 +7,8 @@ class CartProductsController < ApplicationController
   end
 
   def create
-    customer = Customer.find_by(id: cookies.signed[:customer_id])
-    if customer.nil?
-      customer = Customer.create
-      cookies.permanent.signed[:customer_id] = customer.id
-      customer.cart_products.create(cart_product_params)
-      redirect_to products_path, flash: { primary: "カートに追加しました" }
-    else
-      customer.cart_products.create(cart_product_params)
-      redirect_to products_path, flash: { primary: "カートに追加しました" }
-    end
+    @customer.cart_products.create(cart_product_params)
+    redirect_to products_path, flash: { primary: "カートに追加しました" }
   end
 
   def destroy
@@ -27,4 +20,15 @@ def cart_product_params
   permit_params = params.require(:cart_product).permit(:product_id,:quantity)
   permit_params.merge(customer_id: cookies.signed[:customer_id])
 end 
+
+def new_cutomer?
+  @customer = Customer.find_by(id: cookies.signed[:customer_id])
+  if @customer.nil?
+    @customer = Customer.create
+    cookies.permanent.signed[:customer_id] = @customer.id
+  else
+    @customer
+  end
+end
+
 end
