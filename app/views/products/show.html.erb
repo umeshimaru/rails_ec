@@ -9,11 +9,10 @@
           <p><%= "#{@product.price}円" %></p>
         </div>
         <p class="lead"><%= @product.description%></p>
-       
- <%= form_with model: CartProduct.new  do |f| %>
+       <%# url: "/cart_products/#{@product.id}" %>
+ <%= form_with url: "/cart_products/#{@product.id}" do |f| %>
   <div class="d-flex flex-row">
-  <%= f.number_field :quantity, class: "form-control text-center me-3", style: "max-width: 4rem", min: 1, max: 100, value: 1%>
-  <input type="hidden" name="cart_product[product_id]" value="<%= @product.id %>">
+  <%= f.number_field :quantity, class: "form-control text-center me-3", style: "max-width: 4rem", min: 1, max: 100%>
   <button type="submit" class="btn btn-outline-dark mt-auto">
     <i class="bi bi-cart-fill me-1"></i>Add to cart
   </button>
@@ -49,7 +48,7 @@
             <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
               <div class="text-center">
-               <%= button_to "Add to cart", {controller: 'cart_products', action: 'create'},{method: :post, params:{ cart_product:{quantity:1,product_id:suggested_product.id}}, class: "btn btn-outline-dark mt-auto" }%></div>
+               <%= button_to "Add to cart", "/cart_products/#{suggested_product.id}",method: :post, class: "btn btn-outline-dark mt-auto" %></div>
             </div>
           </div>
         </div>
