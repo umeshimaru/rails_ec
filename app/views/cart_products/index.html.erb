@@ -16,7 +16,7 @@
               </div>
             <div>
             <span><%=cart_product.quantity%>点
-            <%=cart_product.product.price%>円</span>
+            <%=cart_product.product.price * cart_product.quantity%>円</span>
             </div>
           </li>
           <%end%>

@@ -9,9 +9,9 @@ class CartProductsController < ApplicationController
 
 
   def create
-    quantity =  params[:quantity].nil? ? 1 : params[:quantity]
+    quantity =  params[:quantity].nil? ? 1 : params[:quantity].to_i
 
-    puts quantity
+    puts quantity.class
 
     @your_cart_product = @customer.cart_products.find_by(product_id: params[:id])
 
