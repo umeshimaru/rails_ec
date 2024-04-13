@@ -9,12 +9,13 @@ class CartProductsController < ApplicationController
 
 
   def create
-    #indexページのadd to cartがクリックされた時かshowから追加されたか判定するため場合
     quantity =  params[:quantity].nil? ? 1 : params[:quantity]
-      
-    @your_cart_products = @customer.cart_products.find_by(product_id: params[:id])
 
- if @your_cart_products.nil?
+    puts quantity
+
+    @your_cart_product = @customer.cart_products.find_by(product_id: params[:id])
+
+ if @your_cart_product.nil?
  @your_cart_product = @customer.cart_products.new(product_id:params[:id],
     quantity: quantity)
  else
@@ -26,8 +27,7 @@ class CartProductsController < ApplicationController
  else
   redirect_to products_path, flash: { primary: "カートに追加できませんでした" }
  end
-    # @customer.cart_products.create(cart_product_params)
-    # redirect_to products_path, flash: { primary: "カートに追加しました" }
+ 
   end
 
   def destroy
