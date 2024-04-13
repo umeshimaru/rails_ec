@@ -14,12 +14,16 @@
               <h4 class="my-0"><%=cart_product.product.name%></h4>
               <small class="text-body-secondary"><%=cart_product.product.description%> </small>
             </div>
-            <span class="text-body-secondary"><%=cart_product.quantity%></span>
+            <span class="text-body-secondary"><%=cart_product.quantity%>点</span>
             <span class="text-body-secondary"><%=cart_product.product.price%>円</span>
           </li>
           <%end%>
           <li class="list-group-item d-flex justify-content-between lh-sm">
-          <h4 class="my-0">合計<span><%=calc_total_quantity(@cart_products)%><%= calc_total_price(@cart_products)%></span></h4>
+          <h4 class="my-0">合計</h4>
+          <div>
+          <span><%=calc_total_quantity(@cart_products)%>点
+         <%= calc_total_price(@cart_products)%>円</span>
+          </div>
            </li>
         </ul>
         <div>
