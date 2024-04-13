@@ -2,6 +2,7 @@ class CartProductsController < ApplicationController
   before_action :set_customer ,only:[:create ,:index]
   def index
 @cart_products = @customer.cart_products
+
   end
 
   def new
@@ -11,7 +12,6 @@ class CartProductsController < ApplicationController
   def create
     quantity =  params[:quantity].nil? ? 1 : params[:quantity].to_i
 
-    puts quantity.class
 
     @your_cart_product = @customer.cart_products.find_by(product_id: params[:id])
 

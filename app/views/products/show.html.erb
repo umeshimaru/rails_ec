@@ -9,10 +9,10 @@
           <p><%= "#{@product.price}円" %></p>
         </div>
         <p class="lead"><%= @product.description%></p>
-       <%# url: "/cart_products/#{@product.id}" %>
+      
  <%= form_with url: "/cart_products/#{@product.id}" do |f| %>
   <div class="d-flex flex-row">
-  <%= f.number_field :quantity, class: "form-control text-center me-3", style: "max-width: 4rem", min: 1, max: 100%>
+  <%= f.number_field :quantity, class: "form-control text-center me-3", style: "max-width: 4rem", min: 1, max: 100,value: 1%>
   <button type="submit" class="btn btn-outline-dark mt-auto">
     <i class="bi bi-cart-fill me-1"></i>Add to cart
   </button>

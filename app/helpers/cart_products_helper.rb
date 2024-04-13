@@ -8,4 +8,7 @@ module CartProductsHelper
     total_price_array = cart_products.map{|cart_product|  cart_product.product.price * cart_product.quantity}
     total_price_array.sum
   end
+
+ 
+
 end
