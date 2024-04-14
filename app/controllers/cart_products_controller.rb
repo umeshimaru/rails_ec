@@ -1,18 +1,16 @@
 class CartProductsController < ApplicationController
-  before_action :set_customer ,only:[:create ,:index]
-  def index
-@cart_products = @customer.cart_products
+  before_action :set_customer       ,only:[:create ,:index,:destroy]
+  
 
+  def index
+    @cart_products = @customer.cart_products  
   end
 
   def new
   end
 
-
   def create
     quantity =  params[:quantity].nil? ? 1 : params[:quantity].to_i
-
-
     @your_cart_product = @customer.cart_products.find_by(product_id: params[:id])
 
  if @your_cart_product.nil?
@@ -23,19 +21,20 @@ class CartProductsController < ApplicationController
  end
 
  if @your_cart_product.save
-  redirect_to products_path, flash: { primary: "カートに追加しました" }
+  redirect_to products_path, flash: {primary: "カートに追加しました"}
  else
-  redirect_to products_path, flash: { primary: "カートに追加できませんでした" }
+  redirect_to products_path, flash: { primary: "カートに追加できませんでした"}
  end
- 
   end
 
   def destroy
+    cart_product = @customer.cart_products.find_by(product_id: params[:id]) 
+if cart_product.delete 
+  redirect_to  cart_products_path, flash: {danger: "商品をカートから削除しました"}
+end
   end
 
   private
-
-
 
 def set_customer
   @customer = Customer.find_by(id: cookies.signed[:customer_id])
@@ -44,5 +43,7 @@ def set_customer
     cookies.permanent.signed[:customer_id] = @customer.id
   end
 end
+
+
 
 end

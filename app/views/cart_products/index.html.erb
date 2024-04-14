@@ -17,7 +17,11 @@
             <div>
             <span><%=cart_product.quantity%>点
             <%=cart_product.product.price * cart_product.quantity%>円</span>
+             <%=button_to "削除","/cart_products/#{cart_product.product_id}",  method: :delete,class: "btn btn-danger"  %>
+           
             </div>
+          
+          
           </li>
           <%end%>
           <li class="list-group-item d-flex justify-content-between lh-sm">
