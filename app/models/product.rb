@@ -2,7 +2,7 @@
 
 class Product < ApplicationRecord
   has_one_attached :image
-  has_many :cart_products
+  has_many :cart_products, dependent: :destroy
   has_many :customer, through: :cart_products
 
   scope :related_products, -> { order(created_at: :desc).limit(5) }

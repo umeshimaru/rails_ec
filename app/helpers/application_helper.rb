@@ -14,11 +14,8 @@ module ApplicationHelper
   end
 
   def calc_total_quantity(cart_products)
-    if cart_products.empty?
-     default_cart_number = 0
-    end
-    total_quantity_array = cart_products.map{|cart_product|  cart_product.quantity}
+    0 if cart_products.empty?
+    total_quantity_array = cart_products.map(&:quantity)
     total_quantity_array.sum
- end 
-
+  end
 end

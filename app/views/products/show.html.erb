@@ -9,14 +9,13 @@
           <p><%= "#{@product.price}円" %></p>
         </div>
         <p class="lead"><%= @product.description%></p>
-      
- <%= form_with url: "/cart_products/#{@product.id}" do |f| %>
-  <div class="d-flex flex-row">
-  <%= f.number_field :quantity, class: "form-control text-center me-3", style: "max-width: 4rem", min: 1, max: 100,value: 1%>
-  <button type="submit" class="btn btn-outline-dark mt-auto">
-    <i class="bi bi-cart-fill me-1"></i>Add to cart
-  </button>
-<% end %>
+        <%= form_with url: "/cart_products/#{@product.id}" do |f| %>
+          <div class="d-flex flex-row">
+            <%= f.number_field :quantity, class: "form-control text-center me-3", style: "max-width: 4rem", min: 1, max: 100,value: 1%>
+            <button type="submit" class="btn btn-outline-dark mt-auto">
+              <i class="bi bi-cart-fill me-1"></i>Add to cart
+            </button>
+          <% end %>
           <%= link_to "戻る",products_path, class: "btn btn-outline-dark flex-shrink-0" ,style: "width:30%;margin-left:5px;"%>
         </div>
       </div>
@@ -48,7 +47,7 @@
             <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
               <div class="text-center">
-               <%= button_to "Add to cart", "/cart_products/#{suggested_product.id}",method: :post, class: "btn btn-outline-dark mt-auto" %></div>
+                <%= button_to "Add to cart", "/cart_products/#{suggested_product.id}",method: :post, class: "btn btn-outline-dark mt-auto" %></div>
             </div>
           </div>
         </div>

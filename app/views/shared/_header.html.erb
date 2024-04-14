@@ -18,11 +18,11 @@
         </li>
       </ul>
       <div class="d-flex">
-  <%= button_to({controller: 'cart_products', action: 'index'}, {method: :get, class: "btn btn-outline-dark mt-auto"}) do %>
-    <i class="bi-cart-fill me-1"></i>
-  Cart
-   <span class="badge bg-dark text-white ms-1 rounded-pill"><%=calc_total_quantity(@your_cart_products)%></span>
-<% end %>
+        <%= button_to({controller: 'cart_products', action: 'index'}, {method: :get, class: "btn btn-outline-dark mt-auto"}) do %>
+          <i class="bi-cart-fill me-1"></i>
+          Cart
+          <span class="badge bg-dark text-white ms-1 rounded-pill"><%=calc_total_quantity(@your_cart_products)%></span>
+        <% end %>
       </div>
     </div>
   </div>
