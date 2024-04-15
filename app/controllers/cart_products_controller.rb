@@ -37,10 +37,7 @@ class CartProductsController < ApplicationController
   private
 
   def set_customer
-    @customer = Customer.find_by(id: cookies.signed[:customer_id])
-    return unless @customer.nil?
-
-    @customer = Customer.create
-    cookies.permanent.signed[:customer_id] = @customer.id
-  end
+    @customer = Customer.find_or_create_by(id: cookies.signed[:customer_id])
+    cookies.permanent.signed[:customer_id] = @customer.id if @customer.id.nil?
+end 
 end
