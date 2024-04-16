@@ -11,18 +11,17 @@ class CartProductsController < ApplicationController
 
   def create
     quantity = params[:quantity].nil? ? 1 : params[:quantity].to_i
-    @your_cart_product = @cart.cart_products.find_or_initialize_by(product_id: params[:id])do |cart| 
-    cart.quantity = quantity
+    @your_cart_product = @cart.cart_products.find_or_initialize_by(product_id: params[:id]) do |cart|
+      cart.quantity = quantity
     end
 
     @your_cart_product.quantity += quantity if @your_cart_product.id
 
     if @your_cart_product.save
       redirect_to products_path, flash: { primary: 'カートに追加しました' }
-    else 
+    else
       redirect_to products_path, flash: { danger: 'カートに追加できませんでした' }
     end
-
   end
 
   def destroy
@@ -37,5 +36,5 @@ class CartProductsController < ApplicationController
   def set_customer
     @cart = Cart.find_or_create_by(id: cookies.signed[:cart_id])
     cookies.permanent.signed[:cart_id] = @cart.id if cookies.permanent.signed[:cart_id].nil?
-end 
+  end
 end
