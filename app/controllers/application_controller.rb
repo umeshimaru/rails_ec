@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
   private
 
   def cart_products_number
-    @customer = Customer.find_by(id: cookies.signed[:customer_id])
-    @your_cart_products = if @customer
-                            @customer.cart_products
+    @cart = Cart.find_by(id: cookies.signed[:cart_id])
+    @your_cart_products = if @cart
+                            @cart.cart_products
                           else
                             []
                           end

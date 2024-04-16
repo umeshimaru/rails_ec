@@ -4,14 +4,14 @@ class CartProductsController < ApplicationController
   before_action :set_customer, only: %i[create index destroy]
 
   def index
-    @cart_products = @customer.cart_products
+    @cart_products = @cart.cart_products
   end
 
   def new; end
 
   def create
     quantity = params[:quantity].nil? ? 1 : params[:quantity].to_i
-    @your_cart_product = @customer.cart_products.find_or_initialize_by(product_id: params[:id])do |cart| 
+    @your_cart_product = @cart.cart_products.find_or_initialize_by(product_id: params[:id])do |cart| 
     cart.quantity = quantity
     end
 
@@ -26,7 +26,7 @@ class CartProductsController < ApplicationController
   end
 
   def destroy
-    cart_product = @customer.cart_products.find_by(product_id: params[:id])
+    cart_product = @cart.cart_products.find_by(product_id: params[:id])
     return unless cart_product.delete
 
     redirect_to cart_products_path, flash: { danger: '商品をカートから削除しました' }
@@ -35,7 +35,7 @@ class CartProductsController < ApplicationController
   private
 
   def set_customer
-    @customer = Customer.find_or_create_by(id: cookies.signed[:customer_id])
-    cookies.permanent.signed[:customer_id] = @customer.id if cookies.permanent.signed[:customer_id].nil?
+    @cart = Cart.find_or_create_by(id: cookies.signed[:cart_id])
+    cookies.permanent.signed[:cart_id] = @cart.id if cookies.permanent.signed[:cart_id].nil?
 end 
 end

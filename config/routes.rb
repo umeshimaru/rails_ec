@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       post :create
     end
   end
-  resources :customers, only: %i[new create]
+  resources :carts, only: %i[new create]
   root 'products#index'
   resources :products, only: %i[index show]
   namespace :admin do

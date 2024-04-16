@@ -2,5 +2,5 @@
 
 class CartProduct < ApplicationRecord
   belongs_to :product
-  belongs_to :customer
+  belongs_to :cart
 end
