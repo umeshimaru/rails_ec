@@ -12,4 +12,10 @@ module ApplicationHelper
   def admin_products_path_or_products_path?
     admin? ? admin_products_path : products_path
   end
+
+  def calc_total_quantity(cart_products)
+    0 if cart_products.empty?
+    total_quantity_array = cart_products.map(&:quantity)
+    total_quantity_array.sum
+  end
 end
