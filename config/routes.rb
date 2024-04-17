@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :customers
   resources :cart_products, only: %i[index new destroy create] do
     member do
       post :create
