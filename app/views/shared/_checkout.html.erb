@@ -1,17 +1,17 @@
 <div class="col-md-7 col-lg-8">
   <h4 class="mb-3">請求先住所</h4>
-  <%= form_with(model: @address, local: true, class: "needs-validation", novalidate: true) do |f| %>
+  <%= form_with(model: @customer, class: "needs-validation") do |f| %>
     <div class="row g-3">
       <div class="col-sm-6">
-        <%= f.label :first_name, "名", class: "form-label" %>
-        <%= f.text_field :first_name, class: "form-control", id: "firstName", required: true %>
+        <%= f.label      :last_name, "姓", class: "form-label" %>
+        <%= f.text_field :last_name, class: "form-control" %>
         <div class="invalid-feedback">
           有効な名前が必要です。
         </div>
       </div>
       <div class="col-sm-6">
-        <%= f.label :last_name, "姓", class: "form-label" %>
-        <%= f.text_field :last_name, class: "form-control", id: "lastName", required: true %>
+        <%= f.label      :first_name, "名", class: "form-label" %>
+        <%= f.text_field :first_name, class: "form-control" %>
         <div class="invalid-feedback">
           有効な姓が必要です。
         </div>
@@ -20,101 +20,98 @@
         <%= f.label :username, "ユーザー名", class: "form-label" %>
         <div class="input-group has-validation">
           <span class="input-group-text">@</span>
-          <%= f.text_field :username, class: "form-control", id: "username", placeholder: "ユーザー名", required: true %>
+          <%= f.text_field :username, class: "form-control", placeholder: "ユーザー名" %>
           <div class="invalid-feedback">
             ユーザー名が必要です。
           </div>
         </div>
       </div>
       <div class="col-12">
-        <%= f.label :email, "メール", class: "form-label" %>
-        <%= f.email_field :email, class: "form-control", id: "email", placeholder: "you@example.com" %>
+        <%= f.label       :email, "メール", class: "form-label" %>
+        <%= f.email_field :email, class: "form-control", placeholder: "you@example.com" %>
         <div class="invalid-feedback">
           配送の更新のために有効なメールアドレスを入力してください。
         </div>
       </div>
+
+       <div class="col-md-3">
+        <%= f.label      :zip, "郵便番号", class: "form-label" %>
+        <%= f.text_field :zip, class: "form-control" %>
+        <div class="invalid-feedback">
+          郵便番号が必要です。
+        </div>
+      </div>
+
+       <div class="col-md-4">
+        <%= f.label :state, "都道府県", class: "form-label" %>
+        <%= f.select :state, [["選択...", ""], ["カリフォルニア", "CA"]], { include_blank: true }, class: "form-select" %>
+        <div class="invalid-feedback">
+          有効な都道府県を選択してください。
+        </div>
+      </div>
+
+       <div class="col-12">
+        <%= f.label       :city, "市町村", class: "form-label" %>
+        <%= f.text_field  :city, class: "form-control", placeholder: "市町村" %>
+        <div class="invalid-feedback">
+        </div>
+      </div>
       <div class="col-12">
-        <%= f.label :address, "住所", class: "form-label" %>
-        <%= f.text_field :address, class: "form-control", id: "address", placeholder: "1234 Main St", required: true %>
+        <%= f.label       :address, "住所", class: "form-label" %>
+        <%= f.text_field :address, class: "form-control", placeholder: "1234 Main St" %>
         <div class="invalid-feedback">
           配送先住所を入力してください。
         </div>
       </div>
       <div class="col-12">
-        <%= f.label :address2, "住所 2", class: "form-label" %>
-        <%= f.text_field :address2, class: "form-control", id: "address2", placeholder: "マンション名・部屋番号" %>
+        <%= f.label       :address2, "住所 2", class: "form-label" %>
+        <%= f.text_field :address2, class: "form-control", placeholder: "マンション名・部屋番号" %>
       </div>
-      <div class="col-md-5">
-        <%= f.label :country, "国", class: "form-label" %>
-        <%= f.select :country, [["選択...", ""], ["アメリカ合衆国", "USA"]], { include_blank: true }, class: "form-select", id: "country", required: true %>
-        <div class="invalid-feedback">
-          有効な国を選択してください。
-        </div>
-      </div>
-      <div class="col-md-4">
-        <%= f.label :state, "都道府県", class: "form-label" %>
-        <%= f.select :state, [["選択...", ""], ["カリフォルニア", "CA"]], { include_blank: true }, class: "form-select", id: "state", required: true %>
-        <div class="invalid-feedback">
-          有効な都道府県を選択してください。
-        </div>
-      </div>
-      <div class="col-md-3">
-        <%= f.label :zip, "郵便番号", class: "form-label" %>
-        <%= f.text_field :zip, class: "form-control", id: "zip", required: true %>
-        <div class="invalid-feedback">
-          郵便番号が必要です。
-        </div>
-      </div>
+ 
+     
+     
     </div>
     
     
     <hr class="my-4">
-    <h4 class="mb-3">支払い方法</h4>
-    <div class="my-3">
-      <div class="form-check">
-        <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
-        <label class="form-check-label" for="credit">クレジットカード</label>
-      </div>
-    </div>
+    <h4 class="mb-3">クレジットカード情報</h4>
     <div class="row gy-3">
       <div class="col-md-6">
-        <%= f.label :cc_name, "カード上の名前", class: "form-label" %>
-        <%= f.text_field :cc_name, class: "form-control", id: "cc-name", required: true %>
+        <%= f.label :credit_name, "カード上の名前", class: "form-label" %>
+        <%= f.text_field :credit_name, class: "form-control" %>
         <small class="text-body-secondary">カードに表示されている通りのフルネーム</small>
         <div class="invalid-feedback">カード上の名前が必要です</div>
       </div>
       <div class="col-md-6">
-        <%= f.label :cc_number, "クレジットカード番号", class: "form-label" %>
-        <%= f.text_field :cc_number, class: "form-control", id: "cc-number", required: true %>
+        <%= f.label :credit_number, "クレジットカード番号", class: "form-label" %>
+        <%= f.text_field :credit_number, class: "form-control" %>
         <div class="invalid-feedback">クレジットカード番号が必要です</div>
       </div>
-      <div class="col-md-3">
-        <%= f.label :cc_expiration, "有効期限", class: "form-label" %>
-        <%= f.text_field :cc_expiration, class: "form-control", id: "cc-expiration", placeholder: "MM/YY", required: true %>
-
-        <div class="invalid-feedback">有効期限が必要です</div>
-      </div>
-    
 <div class="col-md-3">
-  <%= f.label :cc_cvv, "CVV", class: "form-label" %>
-  <%= f.text_field :cc_cvv, class: "form-control", id: "cc-cvv", placeholder: "", required: true %>
-  <div class="invalid-feedback">セキュリティコードが必要です</div>
+  <%= f.label :credit_expiration, "有効期限", class: "form-label" %>
+  <%= f.text_field :credit_expiration, class: "form-control", placeholder: "MM/YY" %>
+  <div class="invalid-feedback">有効期限が必要です</div>
 </div>
 
+<div class="col-md-3">
+  <%= f.label :credit_cvv, "CVV", class: "form-label" %>
+  <%= f.text_field :credit_cvv, class: "form-control", placeholder: "" %>
+  <div class="invalid-feedback">セキュリティコードが必要です</div>
+</div>
 <% end %>
 
-    <hr class="my-4">
-    <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
-  </form>
+<hr class="my-4">
+<button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+</form>
 </div>
 </div>
 </main>
 <footer class="my-5 pt-5 text-body-secondary text-center text-small">
-  <p class="mb-1">&copy; 2017-2023 Company Name</p>
-  <ul class="list-inline">
-    <li class="list-inline-item"><a href="#">Privacy</a></li>
-    <li class="list-inline-item"><a href="#">Terms</a></li>
-    <li class="list-inline-item"><a href="#">Support</a></li>
-  </ul>
+<p class="mb-1">&copy; 2017-2023 Company Name</p>
+<ul class="list-inline">
+<li class="list-inline-item"><a href="#">Privacy</a></li>
+<li class="list-inline-item"><a href="#">Terms</a></li>
+<li class="list-inline-item"><a href="#">Support</a></li>
+</ul>
 </footer>
 </div>
