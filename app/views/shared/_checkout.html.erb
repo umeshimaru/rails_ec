@@ -1,45 +1,45 @@
-<%= render 'shared/error_messages',instance:@customer %>
+
 <div class="col-md-7 col-lg-8">
-  <h4 class="mb-3">請求先住所</h4>
+  <h4 class="mb-3">購入手続き画面</h4>
   <%= form_with(model: Customer.new, class: "needs-validation") do |f| %>
     <div class="row g-3">
       <div class="col-sm-6">
         <%= f.label      :last_name, "姓", class: "form-label" %>
         <%= f.text_field :last_name, class: "form-control" %>
-        <div class="invalid-feedback">
-          有効な名前が必要です。
+        <div>
+          <%= @customer.errors.full_messages_for(:last_name).join(",") if @customer%>
         </div>
       </div>
       <div class="col-sm-6">
         <%= f.label      :first_name, "名", class: "form-label" %>
         <%= f.text_field :first_name, class: "form-control" %>
-        <div class="invalid-feedback">
-          有効な姓が必要です。
+         <div>
+          <%= @customer.errors.full_messages_for(:first_name).join(",") if @customer%>
         </div>
       </div>
       <div class="col-12">
-        <%= f.label :username, "ユーザー名", class: "form-label" %>
+        <%= f.label :user_name, "ユーザー名", class: "form-label" %>
         <div class="input-group has-validation">
           <span class="input-group-text">@</span>
-          <%= f.text_field :username, class: "form-control", placeholder: "ユーザー名" %>
-          <div class="invalid-feedback">
-            ユーザー名が必要です。
-          </div>
+          <%= f.text_field :user_name, class: "form-control", placeholder: "ユーザー名" %>
+        </div>
+          <div>
+          <%= @customer.errors.full_messages_for(:user_name).join(",") if @customer%>
         </div>
       </div>
       <div class="col-12">
         <%= f.label       :email, "メール", class: "form-label" %>
         <%= f.email_field :email, class: "form-control", placeholder: "you@example.com" %>
-        <div class="invalid-feedback">
-          配送の更新のために有効なメールアドレスを入力してください。
+        <div>
+          <%= @customer.errors.full_messages_for(:email).join(",") if @customer%>
         </div>
       </div>
 
        <div class="col-md-3">
         <%= f.label      :zip, "郵便番号", class: "form-label" %>
         <%= f.text_field :zip, class: "form-control" %>
-        <div class="invalid-feedback">
-          郵便番号が必要です。
+        <div>
+          <%= @customer.errors.full_messages_for(:zip).join(",") if @customer%>
         </div>
       </div>
 
@@ -54,29 +54,32 @@
   "四国地方" => [ "徳島県", "香川県", "愛媛県", "高知県" ],
   "九州・沖縄地方" => [ "福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県" ]
 }, {}, class: "form-select" %>
-        <div class="invalid-feedback">
-          有効な都道府県を選択してください。
+         <div>
+          <%= @customer.errors.full_messages_for(:pref).join(",") if @customer%>
         </div>
       </div>
 
        <div class="col-12">
         <%= f.label       :city, "市町村", class: "form-label" %>
         <%= f.text_field  :city, class: "form-control", placeholder: "市町村" %>
-        <div class="invalid-feedback">
+         <div>
+          <%= @customer.errors.full_messages_for(:city).join(",") if @customer%>
         </div>
       </div>
       <div class="col-12">
         <%= f.label       :address, "住所", class: "form-label" %>
         <%= f.text_field :address, class: "form-control", placeholder: "1234 Main St" %>
-        <div class="invalid-feedback">
-          配送先住所を入力してください。
+        <div>
+          <%= @customer.errors.full_messages_for(:address).join(",") if @customer%>
         </div>
       </div>
       <div class="col-12">
-        <%= f.label       :address2, "住所 2", class: "form-label" %>
+        <%= f.label       :address2, "住所 2(任意)", class: "form-label" %>
         <%= f.text_field :address2, class: "form-control", placeholder: "マンション名・部屋番号" %>
       </div>
- 
+  <div>
+          <%= @customer.errors.full_messages_for(:address2).join(",") if @customer%>
+        </div>
      
      
     </div>
@@ -89,24 +92,32 @@
         <%= f.label :credit_name, "カード上の名前", class: "form-label" %>
         <%= f.text_field :credit_name, class: "form-control" %>
         <small class="text-body-secondary">カードに表示されている通りのフルネーム</small>
-        <div class="invalid-feedback">カード上の名前が必要です</div>
+         <div>
+          <%= @customer.errors.full_messages_for(:credit_name).join(",") if @customer%>
+        </div>
       </div>
       <div class="col-md-6">
         <%= f.label :credit_number, "クレジットカード番号", class: "form-label" %>
         <%= f.text_field :credit_number, class: "form-control" %>
-        <div class="invalid-feedback">クレジットカード番号が必要です</div>
+         <div>
+          <%= @customer.errors.full_messages_for(:credit_number).join(",") if @customer%>
+        </div>
       </div>
 <div class="col-md-3">
   <%= f.label :credit_expiration, "有効期限", class: "form-label" %>
   <%= f.text_field :credit_expiration, class: "form-control", placeholder: "MM/YY" %>
-  <div class="invalid-feedback">有効期限が必要です</div>
+   <div>
+          <%= @customer.errors.full_messages_for(:credit_expiration).join(",") if @customer%>
+        </div>
 </div>
 
 <div class="col-md-3">
   <%= f.label :credit_cvv, "CVV", class: "form-label" %>
   <%= f.text_field :credit_cvv, class: "form-control", placeholder: "" %>
-  <div class="invalid-feedback">セキュリティコードが必要です</div>
-</div>
+   <div>
+          <%= @customer.errors.full_messages_for(:credit_cvv).join(",") if @customer%>
+        </div>
+         </div>
 <% end %>
 
 <hr class="my-4">
