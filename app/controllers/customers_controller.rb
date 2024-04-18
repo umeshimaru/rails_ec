@@ -9,7 +9,8 @@ class CustomersController < ApplicationController
     if @customer.save 
       redirect_to admin_products_path, flash: { primary: '購入ありがとうございます' }
         else
-          @cart_products = @cart.cart_products
+      @cart_products = @cart.cart_products
+      flash.now[:danger] = "購入できませんでした"
       render "cart_products/index", status: :unprocessable_entity
     end
 
