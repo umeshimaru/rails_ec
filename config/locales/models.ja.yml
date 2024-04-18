@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       product: 商品
+      customer: お客様
     attributes:
       product:
         name: 商品名
@@ -9,6 +10,20 @@ ja:
         product_code: 商品番号
         description: 商品説明
         image: 商品画像
+      customer:
+        last_name: 姓
+        first_name: 名
+        user_name: ニックネーム
+        email: メールアドレス
+        address: 住所
+        address2: 住所(任意)
+        pref: 都道府県
+        city: 市町村
+        zip: 郵便番号
+        credit_name: クレジットカード名
+        credit_expiration: 有効期限
+        credit_cvv: セキュリティコード
+        credit_number: クレジットカード番号
     errors:
       models:
         product:
