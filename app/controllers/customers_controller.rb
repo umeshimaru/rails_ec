@@ -1,37 +1,18 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: %i[ show edit update destroy ]
+  before_action :set_customer, only: %i[index]
 
-  # GET /customers or /customers.json
-  def index
-    @customers = Customer.all
-  end
 
-  # GET /customers/1 or /customers/1.json
-  def show
-  end
 
-  # GET /customers/new
-  def new
-    @customer = Customer.new
-  end
-
-  # GET /customers/1/edit
-  def edit
-  end
-
-  # POST /customers or /customers.json
   def create
     @customer = Customer.new(customer_params)
-
-    respond_to do |format|
-      if @customer.save
-        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully created." }
-        format.json { render :show, status: :created, location: @customer }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @customer.errors, status: :unprocessable_entity }
-      end
+    
+    if @customer.save 
+      redirect_to admin_products_path, flash: { primary: '購入ありがとうございます' }
+        else
+          @cart_products = @cart.cart_products
+      render "cart_products/index", status: :unprocessable_entity
     end
+
   end
 
   # PATCH/PUT /customers/1 or /customers/1.json
@@ -47,7 +28,7 @@ class CustomersController < ApplicationController
     end
   end
 
-  # DELETE /customers/1 or /customers/1.json
+
   def destroy
     @customer.destroy
 
@@ -58,13 +39,15 @@ class CustomersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_customer
-      @customer = Customer.find(params[:id])
-    end
+  
+  
 
     # Only allow a list of trusted parameters through.
     def customer_params
       params.require(:customer).permit(:last_name, :first_name, :user_name, :email, :address, :address2, :pref, :city, :zip, :credit_name, :credit_number, :credit_expiration, :credit_cvv)
+    end
+
+    def set_customer
+      @cart = Cart.find_by(id: cookies.signed[:cart_id])
     end
 end
