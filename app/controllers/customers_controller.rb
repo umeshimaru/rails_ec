@@ -2,13 +2,15 @@ class CustomersController < ApplicationController
   before_action :set_customer, only: %i[index]
 
 
-
   def create
-    @customer = Customer.new(customer_params)
     
+    @customer = Customer.new(customer_params)
+    puts params[:customer]
     if @customer.save 
-      redirect_to admin_products_path, flash: { primary: '購入ありがとうございます' }
-        else
+      send_purchase_reciept
+      @cart.destroy
+      redirect_to   products_path, flash: { primary: '購入ありがとうございます' }
+      else
       @cart_products = @cart.cart_products
       flash.now[:danger] = "購入できませんでした"
       render "cart_products/index", status: :unprocessable_entity
@@ -51,4 +53,18 @@ class CustomersController < ApplicationController
     def set_customer
       @cart = Cart.find_by(id: cookies.signed[:cart_id])
     end
+
+    def send_purchase_reciept
+      @cart.products.each do |product|
+        @customer.purchased_products.create(
+          name: product.name,
+          price: product.price,
+          quantity: product.cart_products.first.quantity,
+          description: product.description
+        )
+      end
+    end
+    
+   
+
 end
