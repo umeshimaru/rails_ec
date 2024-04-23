@@ -3,11 +3,10 @@ class CustomersController < ApplicationController
 
 
   def create
-    
     @customer = Customer.new(customer_params)
     puts params[:customer]
     if @customer.save 
-      send_purchase_reciept
+      create_purchased_products
       @cart.destroy
       redirect_to   products_path, flash: { primary: '購入ありがとうございます' }
       else
@@ -54,7 +53,7 @@ class CustomersController < ApplicationController
       @cart = Cart.find_by(id: cookies.signed[:cart_id])
     end
 
-    def send_purchase_reciept
+    def create_purchased_products
       @cart.products.each do |product|
         @customer.purchased_products.create(
           name: product.name,
