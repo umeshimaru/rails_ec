@@ -68,6 +68,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'hirb'
   gem 'rspec-rails'
+  gem 'letter_opener_web', '~> 2.0'
 end
 
 group :development do

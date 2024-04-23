@@ -18,4 +18,6 @@ module ApplicationHelper
     total_quantity_array = cart_products.map(&:quantity)
     total_quantity_array.sum
   end
+
+
 end

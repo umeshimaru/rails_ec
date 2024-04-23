@@ -4,11 +4,11 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
-    puts params[:customer]
     if @customer.save 
       create_purchased_products
       @cart.destroy
       redirect_to   products_path, flash: { primary: '購入ありがとうございます' }
+      CustomerMailer.with(customer: @customer).send_invoice.deliver_now
       else
       @cart_products = @cart.cart_products
       flash.now[:danger] = "購入できませんでした"
