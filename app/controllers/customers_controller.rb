@@ -20,6 +20,7 @@ rescue StandardError
   clear_session
   redirect_to   products_path, flash: { danger: '購入処理に失敗しました、最初からやり直してください。' }
   end
+end
 
   private
   
