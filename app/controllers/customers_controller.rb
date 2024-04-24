@@ -1,14 +1,7 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: %i[index]
 
-  def index
-    @customers = Customer.all
-  end
 
-  def show
-    customer = Customer.find(params[:id])
-    @purchase_products = customer.purchased_products
-  end
 
   def create
     @customer = Customer.new(customer_params)
@@ -25,27 +18,9 @@ class CustomersController < ApplicationController
 
   end
 
-  # PATCH/PUT /customers/1 or /customers/1.json
-  def update
-    respond_to do |format|
-      if @customer.update(customer_params)
-        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully updated." }
-        format.json { render :show, status: :ok, location: @customer }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @customer.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
 
-  def destroy
-    @customer.destroy
 
-    respond_to do |format|
-      format.html { redirect_to customers_url, notice: "Customer was successfully destroyed." }
-      format.json { head :no_content }
-    end
   end
 
   private

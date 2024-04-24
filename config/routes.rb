@@ -14,14 +14,15 @@ Rails.application.routes.draw do
   root 'products#index'
   resources :products, only: %i[index show]
 
-  namespace :admin do
-    resources :products
-  end
+ 
 
   namespace :admin do
     resources :cart_products ,only: %i[index ]
+    resources :products
+    resources :custom
+    resources :purchased_products ,only: %i[index show ]
   end
 
-  
+
  
 end
