@@ -3,23 +3,27 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
+    begin 
+    ActiveRecord::Base.transaction do
     if @customer.save 
       create_purchased_products
-      @cart.destroy
-      redirect_to   products_path, flash: { primary: '購入ありがとうございます' }
+      clear_session
       CustomerMailer.with(customer: @customer).send_invoice.deliver_now
+      redirect_to   products_path, flash: { primary: '購入ありがとうございます' }
       else
       @cart_products = @cart.cart_products
       flash.now[:danger] = "購入できませんでした"
       render "cart_products/index", status: :unprocessable_entity
     end
+  end 
+rescue StandardError
+  clear_session
+  redirect_to   products_path, flash: { danger: '購入処理に失敗しました、最初からやり直してください。' }
   end
 
   private
   
   
-
-    # Only allow a list of trusted parameters through.
     def customer_params
       params.require(:customer).permit(:last_name, :first_name, :user_name, :email, :address, :address2, :pref, :city, :zip, :credit_name, :credit_number, :credit_expiration, :credit_cvv)
     end
@@ -39,6 +43,10 @@ class CustomersController < ApplicationController
       end
     end
     
+    def clear_session
+      session[:cart_id] = nil
+      @cart.destroy
+    end
    
 
 end
