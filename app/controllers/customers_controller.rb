@@ -15,6 +15,7 @@ class CustomersController < ApplicationController
       flash.now[:danger] = "購入できませんでした"
       render "cart_products/index", status: :unprocessable_entity
     end
+  end
 
   end
 
