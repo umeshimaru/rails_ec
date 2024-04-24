@@ -1,8 +1,6 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: %i[index]
 
-
-
   def create
     @customer = Customer.new(customer_params)
     if @customer.save 
@@ -15,13 +13,6 @@ class CustomersController < ApplicationController
       flash.now[:danger] = "購入できませんでした"
       render "cart_products/index", status: :unprocessable_entity
     end
-  end
-
-  end
-
-
-
-
   end
 
   private
