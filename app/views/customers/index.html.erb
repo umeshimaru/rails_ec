@@ -3,6 +3,7 @@
     <tr>
       <th scope="col">id</th>
       <th scope="col">名前</th>
+      <th scope="col">都道府県</th>
       <th scope="col">購入日</th>
       <th scope="col">購入詳細</th>
     </tr>
@@ -12,6 +13,7 @@
     <tr>
       <th scope="row"><%=customer.id%></th>
       <td><%=full_name(customer.last_name,customer.first_name)%></td>
+      <td><%=customer.pref%></td>
       <td><%=customer.created_at.strftime("%Y年%m月%d日")%></td>
       <td><%=link_to "購入詳細",customer_path(customer)%></td>
     </tr>
