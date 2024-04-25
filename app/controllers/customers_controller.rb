@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  
+
   def create
     @customer = Customer.new(customer_params)
     begin 
@@ -10,7 +10,6 @@ class CustomersController < ApplicationController
       clear_session
       redirect_to   products_path, flash: { primary: '購入ありがとうございます' }
       else
-      @cart_products = @cart.cart_products
       flash.now[:danger] = "購入できませんでした"
       render "cart_products/index", status: :unprocessable_entity
     end
