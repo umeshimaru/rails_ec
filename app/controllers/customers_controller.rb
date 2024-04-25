@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
   def create
     @customer = Customer.new(customer_params)
     begin 
-    ActiveRecord::Base.transaction do
+      ActiveRecord::Base.transaction do
     if @customer.save 
       create_purchased_products
       CustomerMailer.with(customer: @customer).send_invoice.deliver_now
@@ -27,9 +27,7 @@ end
       params.require(:customer).permit(:last_name, :first_name, :user_name, :email, :address, :address2, :pref, :city, :zip, :credit_name, :credit_number, :credit_expiration, :credit_cvv)
     end
 
-    def set_customer
-      @cart = Cart.find_by(id: cookies.signed[:cart_id])
-    end
+   
 
     def create_purchased_products
       @cart.products.each do |product|
