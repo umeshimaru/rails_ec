@@ -1,5 +1,7 @@
 class Admin::PurchasedProductsController < ApplicationController
   before_action :basic_auth
+  
+
   def index
     @customers = Customer.all
   end
@@ -18,4 +20,7 @@ class Admin::PurchasedProductsController < ApplicationController
       username == ENV['ADMIN'] && password == ENV['BASIC_PASSWORD']
     end
   end
+
+ 
+
 end

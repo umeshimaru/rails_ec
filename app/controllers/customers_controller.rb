@@ -1,14 +1,13 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: %i[index]
-
+  
   def create
     @customer = Customer.new(customer_params)
     begin 
     ActiveRecord::Base.transaction do
     if @customer.save 
       create_purchased_products
-      clear_session
       CustomerMailer.with(customer: @customer).send_invoice.deliver_now
+      clear_session
       redirect_to   products_path, flash: { primary: '購入ありがとうございます' }
       else
       @cart_products = @cart.cart_products
@@ -48,6 +47,6 @@ end
       session[:cart_id] = nil
       @cart.destroy
     end
-   
 
+  
 end
