@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_04_113655) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_17_135807) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,24 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_113655) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "customers", force: :cascade do |t|
+    t.string "last_name"
+    t.string "first_name"
+    t.string "user_name"
+    t.string "email"
+    t.string "address"
+    t.string "address2"
+    t.string "pref"
+    t.string "city"
+    t.integer "zip"
+    t.string "credit_name"
+    t.bigint "credit_number"
+    t.integer "credit_expiration"
+    t.integer "credit_cvv"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.integer "price"
@@ -66,6 +84,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_113655) do
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_products_on_name", unique: true
     t.index ["product_code"], name: "index_products_on_product_code", unique: true
+  end
+
+  create_table "purchased_products", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.integer "quantity"
+    t.text "description"
+    t.bigint "customer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_purchased_products_on_customer_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -80,4 +109,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_113655) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cart_products", "carts"
   add_foreign_key "cart_products", "products"
+  add_foreign_key "purchased_products", "customers"
 end

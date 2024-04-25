@@ -67,6 +67,7 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'hirb'
+  gem 'letter_opener_web', '~> 2.0'
   gem 'rspec-rails'
 end
 

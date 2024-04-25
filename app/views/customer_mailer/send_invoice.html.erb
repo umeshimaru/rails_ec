@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @customer.first_name %>様、ご購入いただき誠にありがとうございます</h1>
+    <p>
+      こちら今回のお買い物の購入明細でございます
+    </p>
+    <table class="table table-striped-columns">
+      <tr>
+        <th scope="col">商品名</th>
+        <th scope="col">料金</th>
+        <th scope="col">数量</th>
+        <th scope="col">合計</th>
+      </tr>
+      <% @purchased_products.each do |purchased_product|  %>
+        <tr>
+          <td><%=purchased_product.name%></td>
+          <td><%=purchased_product.price%>円</td>
+          <td><%=purchased_product.quantity%>個</td>
+        </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td><%=calc_mail_total_quantity(@purchased_products)%>個</td>
+        <td><%=calc_mail_total_price(@purchased_products)%>円</td>
+      </tr>
+    </table>
+  </body>
+</html>

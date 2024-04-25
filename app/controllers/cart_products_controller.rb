@@ -5,6 +5,7 @@ class CartProductsController < ApplicationController
 
   def index
     @cart_products = @cart.cart_products
+    @customer = Customer.new
   end
 
   def new; end

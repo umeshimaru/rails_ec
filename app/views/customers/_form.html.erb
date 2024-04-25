@@ -1,0 +1,67 @@
+<%= form_with(model: customer) do |form| %>
+  <% if customer.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+      <ul>
+        <% customer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= form.label :last_name, style: "display: block" %>
+    <%= form.text_field :last_name %>
+  </div>
+  <div>
+    <%= form.label :first_name, style: "display: block" %>
+    <%= form.text_field :first_name %>
+  </div>
+  <div>
+    <%= form.label :user_name, style: "display: block" %>
+    <%= form.text_field :user_name %>
+  </div>
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+  <div>
+    <%= form.label :address, style: "display: block" %>
+    <%= form.text_field :address %>
+  </div>
+  <div>
+    <%= form.label :address2, style: "display: block" %>
+    <%= form.text_field :address2 %>
+  </div>
+  <div>
+    <%= form.label :pref, style: "display: block" %>
+    <%= form.text_field :pref %>
+  </div>
+  <div>
+    <%= form.label :city, style: "display: block" %>
+    <%= form.text_field :city %>
+  </div>
+  <div>
+    <%= form.label :zip, style: "display: block" %>
+    <%= form.number_field :zip %>
+  </div>
+  <div>
+    <%= form.label :credit_name, style: "display: block" %>
+    <%= form.text_field :credit_name %>
+  </div>
+  <div>
+    <%= form.label :credit_number, style: "display: block" %>
+    <%= form.text_field :credit_number %>
+  </div>
+  <div>
+    <%= form.label :credit_expiration, style: "display: block" %>
+    <%= form.number_field :credit_expiration %>
+  </div>
+  <div>
+    <%= form.label :credit_cvv, style: "display: block" %>
+    <%= form.number_field :credit_cvv %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
