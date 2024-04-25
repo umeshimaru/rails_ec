@@ -6,7 +6,7 @@ class CustomersController < ApplicationController
       ActiveRecord::Base.transaction do
     if @customer.save 
       create_purchased_products
-      CustomerMailer.with(customer: @customer).send_invoice.deliver_now
+      # CustomerMailer.with(customer: @customer).send_invoice.deliver_now
       clear_session
       redirect_to   products_path, flash: { primary: '購入ありがとうございます' }
       else
