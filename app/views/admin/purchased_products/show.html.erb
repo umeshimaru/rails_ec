@@ -1,22 +1,21 @@
-
-    <table class="table table-striped-columns"> 
-    <tr>
-     <th scope="col">商品名</th>
-     <th scope="col">数量</th>
-     <th scope="col">料金</th>
-    </tr>
-    <%@purchase_products.each do |purchased_product|%>
+<table class="table table-striped-columns">
+  <tr>
+    <th scope="col">商品名</th>
+    <th scope="col">数量</th>
+    <th scope="col">料金</th>
+  </tr>
+  <%@purchase_products.each do |purchased_product|%>
     <tr>
       <td><%=purchased_product.name%></td>
       <td><%=purchased_product.quantity%>個</td>
       <td><%=purchased_product.price%>円</td>
     </tr>
-    <%end%>
-     <tr>
-      <td></td>
-         <td>合計<%=calc_mail_total_quantity(@purchase_products)%>個</td>
-          <td>合計<%=calc_mail_total_price(@purchase_products)%>円</td>
-    </tr>
-    </table>
-  </body>
+  <%end%>
+  <tr>
+    <td></td>
+    <td>合計<%=calc_mail_total_quantity(@purchase_products)%>個</td>
+    <td>合計<%=calc_mail_total_price(@purchase_products)%>円</td>
+  </tr>
+</table>
+</body>
 </html>

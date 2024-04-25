@@ -10,17 +10,15 @@
     </tr>
   </thead>
   <tbody>
-  <% @customers.each do |customer|%>
-    <tr>
-      <th scope="row"><%=customer.id%></th>
-      <td><%=full_name(customer.last_name,customer.first_name)%></td>
-      <td><%=customer.pref%></td>
-      <td><%=customer.address%></td>
-      <td><%=customer.created_at.strftime("%Y年%m月%d日")%></td>
-      <td><%=link_to "購入詳細", admin_purchased_product_path(customer)%></td>
-    </tr>
+    <% @customers.each do |customer|%>
+      <tr>
+        <th scope="row"><%=customer.id%></th>
+        <td><%=full_name(customer.last_name,customer.first_name)%></td>
+        <td><%=customer.pref%></td>
+        <td><%=customer.address%></td>
+        <td><%=customer.created_at.strftime("%Y年%m月%d日")%></td>
+        <td><%=link_to "購入詳細", admin_purchased_product_path(customer)%></td>
+      </tr>
     <%end%>
-  
-
   </tbody>
 </table>

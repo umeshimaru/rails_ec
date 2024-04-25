@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CustomerMailer < ApplicationMailer
   helper MailHelper
   def send_invoice

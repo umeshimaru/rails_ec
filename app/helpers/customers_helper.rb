@@ -1,6 +1,7 @@
-module CustomersHelper
+# frozen_string_literal: true
 
-  def full_name(last_name,first_name)
+module CustomersHelper
+  def full_name(last_name, first_name)
     "#{last_name}#{first_name}"
   end
 end
