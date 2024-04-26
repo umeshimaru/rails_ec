@@ -30,7 +30,7 @@ class CustomersController < ApplicationController
 
   def create_purchased_products
     @cart.products.each do |product|
-      @customer.purchased_products.create(
+      @customer.purchased_products.create!(
         name: product.name,
         price: product.price,
         quantity: product.cart_products.first.quantity,
