@@ -2,6 +2,7 @@
 
 class Customer < ApplicationRecord
   has_many :purchased_products, dependent: :destroy
+  has_one :promotion, dependent: :destroy
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :last_name,         presence: true
   validates :first_name,        presence: true

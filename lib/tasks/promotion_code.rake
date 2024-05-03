@@ -8,3 +8,4 @@ namespace :promotion_code do
           promotion.save!
         end
 end
+end
