@@ -41,11 +41,11 @@
             </div>
             <span class="text-success">$5</span>
           </li>
-        <form class="card p-2">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Promo code">
-            <button type="submit" class="btn btn-secondary">Redeem</button>
-          </div>
-        </form>
+        <%= form_with url: '/code', class: "card p-2" do |f| %>
+           <div class="input-group">
+    <%= f.text_field :code, class: "form-control", placeholder: "Promo code" %>
+    <%= f.submit "適用", class: "btn btn-secondary" %>
+  </div>
+<% end %>
       </div>
       <%= render 'shared/checkout'%>
