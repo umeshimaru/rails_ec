@@ -8,7 +8,6 @@ class CartProductsController < ApplicationController
     @customer = Customer.new
   end
 
-  def new; end
 
   def create
     quantity = params[:quantity].nil? ? 1 : params[:quantity].to_i
