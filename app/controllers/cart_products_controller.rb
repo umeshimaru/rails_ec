@@ -6,6 +6,8 @@ class CartProductsController < ApplicationController
   def index
     @cart_products = @cart.cart_products
     @customer = Customer.new
+    
+    @discount_amount =   session[:code] ? Promotion.find_by(code:session[:code]).discount_amount : 0
   end
 
 
