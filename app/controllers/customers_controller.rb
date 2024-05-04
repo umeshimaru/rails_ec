@@ -10,7 +10,7 @@ class CustomersController < ApplicationController
         if @customer.save
           create_purchased_products
           apply_discount
-          CustomerMailer.with(customer: @customer, promotion: @promotion).send_invoice.deliver_now
+          send_purchased_details
           clear_session
           redirect_to products_path, flash: { primary: '購入ありがとうございます' }
         else
@@ -55,5 +55,9 @@ class CustomersController < ApplicationController
 
     @promotion.customer_id = @customer.id
     @promotion.save!
+  end
+
+  def send_purchased_details
+    CustomerMailer.with(customer: @customer, promotion: @promotion).send_invoice.deliver_now
   end
 end
