@@ -5,10 +5,13 @@ class CartProductsController < ApplicationController
 
   def index
     @cart_products = @cart.cart_products
+    if @cart_products.empty?
+      redirect_to products_path, flash: { danger: 'カートに商品を追加してください' }
+      return
+    end
     @customer = Customer.new
+    @discount_amount = session[:code] ? Promotion.find_by(code: session[:code]).discount_amount : 0
   end
-
-  def new; end
 
   def create
     quantity = params[:quantity].nil? ? 1 : params[:quantity].to_i

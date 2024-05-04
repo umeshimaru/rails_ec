@@ -3,15 +3,20 @@
 class CustomersController < ApplicationController
   def create
     @customer = Customer.new(customer_params)
+    @promotion = Promotion.find_by(code: session[:code])
+    @cart = Cart.find_or_create_by(id: cookies.signed[:cart_id])
     begin
       ActiveRecord::Base.transaction do
         if @customer.save
           create_purchased_products
-          # CustomerMailer.with(customer: @customer).send_invoice.deliver_now
+          apply_discount
+          # send_purchased_details
           clear_session
           redirect_to products_path, flash: { primary: '購入ありがとうございます' }
         else
           flash.now[:danger] = '購入できませんでした'
+          @cart_products = @cart.cart_products
+          @discount_amount = session[:code] ? Promotion.find_by(code: session[:code]).discount_amount : 0
           render 'cart_products/index', status: :unprocessable_entity
         end
       end
@@ -30,7 +35,7 @@ class CustomersController < ApplicationController
 
   def create_purchased_products
     @cart.products.each do |product|
-      @customer.purchased_products.create(
+      @customer.purchased_products.create!(
         name: product.name,
         price: product.price,
         quantity: product.cart_products.first.quantity,
@@ -41,6 +46,18 @@ class CustomersController < ApplicationController
 
   def clear_session
     session[:cart_id] = nil
+    session[:code] = nil
     @cart.destroy
+  end
+
+  def apply_discount
+    return unless @promotion
+
+    @promotion.customer_id = @customer.id
+    @promotion.save!
+  end
+
+  def send_purchased_details
+    CustomerMailer.with(customer: @customer, promotion: @promotion).send_invoice.deliver_now
   end
 end

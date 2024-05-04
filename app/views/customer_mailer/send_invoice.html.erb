@@ -21,11 +21,16 @@
           <td><%=purchased_product.quantity%>個</td>
         </tr>
       <% end %>
-      <tr>
+      <% unless @discount_amount == 0 %>
+        <tr>
+          <td><%=@discount_amount%></td>
+        </tr>
+        <tr>
+        <% end %>
         <td></td>
         <td></td>
         <td><%=calc_mail_total_quantity(@purchased_products)%>個</td>
-        <td><%=calc_mail_total_price(@purchased_products)%>円</td>
+        <td><%=calc_mail_total_price(@purchased_products,@discount_amount)%>円</td>
       </tr>
     </table>
   </body>

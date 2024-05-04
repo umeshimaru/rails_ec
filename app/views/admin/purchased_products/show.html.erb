@@ -14,7 +14,10 @@
   <tr>
     <td></td>
     <td>合計<%=calc_mail_total_quantity(@purchase_products)%>個</td>
-    <td>合計<%=calc_mail_total_price(@purchase_products)%>円</td>
+    <td>合計<%=calc_mail_total_price(@purchase_products,@discount_amount)%>円
+      <%unless @discount_amount == 0 %>
+        <span style="color:red;">(-<%=@discount_amount%>円割引適用)</span><%end%>
+    </td>
   </tr>
 </table>
 </body>

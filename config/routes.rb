@@ -19,4 +19,6 @@ Rails.application.routes.draw do
     resources :custom
     resources :purchased_products, only: %i[index show]
   end
+
+  post '/code', to: 'promotions#create'
 end

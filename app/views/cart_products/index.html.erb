@@ -21,31 +21,32 @@
                 <%=button_to "削除","/cart_products/#{cart_product.product_id}",  method: :delete,class: "btn btn-danger"  %></div>
             </li>
           <%end%>
+          <% unless @discount_amount == 0  %>
+            <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+              <div class="text-danger">
+                <h6 class="my-0">割引額</h6>
+                <small></small>
+              </div>
+              <span class="text-danger">-<%= @discount_amount%>円</span>
+            </li>
+          <% end %>
           <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
               <h4 class="my-0">合計</h4>
             </div>
             <div>
               <span><%=calc_total_quantity(@cart_products)%>点
-                <%= calc_total_price(@cart_products)%>円</span>
+                <%= calc_total_price(@cart_products,@discount_amount)%>円</span>
             </div>
           </li>
         </ul>
         <div>
         </div>
-        <%# プロモーション↓checkout機能の時に使う %>
-        <%# <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
-            <div class="text-success">
-              <h6 class="my-0">Promo code</h6>
-              <small>EXAMPLECODE</small>
-            </div>
-            <span class="text-success">−$5</span>
-          </li> %>
-        <form class="card p-2">
+        <%= form_with url: '/code', class: "card p-2" do |f| %>
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Promo code">
-            <button type="submit" class="btn btn-secondary">Redeem</button>
+            <%= f.text_field :code, class: "form-control", placeholder: "Promo code" %>
+            <%= f.submit "適用", class: "btn btn-secondary" %>
           </div>
-        </form>
+        <% end %>
       </div>
-      <%= render 'shared/checkout' %>
+      <%= render 'shared/checkout'%>
