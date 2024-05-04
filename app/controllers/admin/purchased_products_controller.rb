@@ -11,6 +11,7 @@ module Admin
     def show
       customer = Customer.find(params[:id])
       @purchase_products = customer.purchased_products
+      @discount_amount = customer.promotion ? customer.promotion.discount_amount : 0
     end
 
     private

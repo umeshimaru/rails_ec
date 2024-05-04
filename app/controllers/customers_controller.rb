@@ -12,7 +12,7 @@ class CustomersController < ApplicationController
         if @customer.save
           create_purchased_products
           apply_discount
-          CustomerMailer.with(customer: @customer).send_invoice.deliver_now
+          CustomerMailer.with(customer: @customer,promotion: @promotion).send_invoice.deliver_now
           clear_session
           redirect_to products_path, flash: { primary: '購入ありがとうございます' }
         else
@@ -55,7 +55,7 @@ class CustomersController < ApplicationController
  
 
   def apply_discount
-     unless @promotion
+     if @promotion
       @promotion.customer_id = @customer.id
       @promotion.save!
     end
