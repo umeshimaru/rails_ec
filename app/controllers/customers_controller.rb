@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class CustomersController < ApplicationController
-
-
   def create
     @customer = Customer.new(customer_params)
     @promotion = Promotion.find_by(code: session[:code])
@@ -12,13 +10,13 @@ class CustomersController < ApplicationController
         if @customer.save
           create_purchased_products
           apply_discount
-          CustomerMailer.with(customer: @customer,promotion: @promotion).send_invoice.deliver_now
+          CustomerMailer.with(customer: @customer, promotion: @promotion).send_invoice.deliver_now
           clear_session
           redirect_to products_path, flash: { primary: '購入ありがとうございます' }
         else
           flash.now[:danger] = '購入できませんでした'
           @cart_products = @cart.cart_products
-          @discount_amount =   session[:code] ? Promotion.find_by(code:session[:code]).discount_amount : 0
+          @discount_amount = session[:code] ? Promotion.find_by(code: session[:code]).discount_amount : 0
           render 'cart_products/index', status: :unprocessable_entity
         end
       end
@@ -52,13 +50,10 @@ class CustomersController < ApplicationController
     @cart.destroy
   end
 
- 
-
   def apply_discount
-     if @promotion
-      @promotion.customer_id = @customer.id
-      @promotion.save!
-    end
-  end
+    return unless @promotion
 
+    @promotion.customer_id = @customer.id
+    @promotion.save!
+  end
 end

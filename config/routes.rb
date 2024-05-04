@@ -3,7 +3,6 @@
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
- 
   resources :customers
   resources :cart_products, only: %i[index new destroy create] do
     member do
@@ -14,8 +13,6 @@ Rails.application.routes.draw do
   root 'products#index'
   resources :products, only: %i[index show]
 
-
-
   namespace :admin do
     resources :cart_products, only: %i[index]
     resources :products
@@ -23,5 +20,5 @@ Rails.application.routes.draw do
     resources :purchased_products, only: %i[index show]
   end
 
-  post '/code' , to: 'promotions#create'
+  post '/code', to: 'promotions#create'
 end

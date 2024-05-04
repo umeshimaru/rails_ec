@@ -23,12 +23,12 @@
           <%end%>
           <% unless @discount_amount == 0  %>
             <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
-            <div class="text-danger">
-              <h6 class="my-0">割引額</h6>
-              <small></small>
-            </div>
-            <span class="text-danger">-<%= @discount_amount%>円</span>
-          </li>
+              <div class="text-danger">
+                <h6 class="my-0">割引額</h6>
+                <small></small>
+              </div>
+              <span class="text-danger">-<%= @discount_amount%>円</span>
+            </li>
           <% end %>
           <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
@@ -42,13 +42,11 @@
         </ul>
         <div>
         </div>
-        
-     
         <%= form_with url: '/code', class: "card p-2" do |f| %>
-           <div class="input-group">
-    <%= f.text_field :code, class: "form-control", placeholder: "Promo code" %>
-    <%= f.submit "適用", class: "btn btn-secondary" %>
-  </div>
-<% end %>
+          <div class="input-group">
+            <%= f.text_field :code, class: "form-control", placeholder: "Promo code" %>
+            <%= f.submit "適用", class: "btn btn-secondary" %>
+          </div>
+        <% end %>
       </div>
       <%= render 'shared/checkout'%>
