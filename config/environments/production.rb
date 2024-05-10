@@ -4,14 +4,14 @@ require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  
+  config.action_mailer.raise_delivery_errors = true
   host = 'https://fast-meadow-57126-bf6a077f374c.herokuapp.com/products'
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
-    port: ENV['MAILGUN_SMTP_PORT'],
-    address: ENV['MAILGUN_SMTP_SERVER'],
+    port:      ENV['MAILGUN_SMTP_PORT'],
+    address:   ENV['MAILGUN_SMTP_SERVER'],
     user_name: ENV['MAILGUN_SMTP_LOGIN'],
-    password: ENV['MAILGUN_SMTP_PASSWORD'],
+    password:  ENV['MAILGUN_SMTP_PASSWORD'],
     domain: host,
     authentication: :plain
   }
