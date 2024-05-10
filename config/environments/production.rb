@@ -4,21 +4,17 @@ require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  host = 'https://fast-meadow-57126-bf6a077f374c.herokuapp.com/'
-  config.action_mailer.default_url_options = { host: host }
+  ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-    :port           => 587,
-    :address        => 'smtp.mailgun.org',
+    :port           => ENV['MAILGUN_SMTP_PORT'],
+    :address        => ENV['MAILGUN_SMTP_SERVER'],
     :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
     :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-    :domain         => host,
+    :domain         => 'https://fast-meadow-57126-bf6a077f374c.herokuapp.com/products',
     :authentication => :plain,
   }
-  # Code is not reloaded between requests.
-  config.cache_classes = true
-
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
