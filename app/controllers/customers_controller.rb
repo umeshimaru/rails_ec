@@ -10,7 +10,7 @@ class CustomersController < ApplicationController
         if @customer.save
           create_purchased_products
           apply_discount
-          send_purchased_details
+          # send_purchased_details
           clear_session
           redirect_to products_path, flash: { primary: '購入ありがとうございます' }
         else
