@@ -36,8 +36,6 @@ http://localhost:3000
 
 ## rubocop
 
-rubocopがすべて通ってからレビュー依頼を出してください。
-
 auto correct
 
 ```
@@ -46,8 +44,6 @@ docker compose run --rm web bundle exec rubocop -A
 
 ## htmlbeautifier
 
-erbのフォーマッターです。
-フォーマッターを通してからレビュー依頼を出してください。
 
 ```
 docker compose run --rm web bin/htmlbeautifier
