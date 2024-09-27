@@ -36,8 +36,6 @@ http://localhost:3000
 
 ## rubocop
 
-auto correct
-
 ```
 docker compose run --rm web bundle exec rubocop -A
 ```
